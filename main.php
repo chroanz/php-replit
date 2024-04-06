@@ -28,13 +28,13 @@
       $this->ingressos = $ingressos;
     }
     public function venderIngressos($ingressosVendidos){
-      echo " *******\n Verificando disponibilidade de ingressos...\n ********\n {$this->ingressos} ingressos disponíveis!\n ********\n";
+      echo " *******\n Verificando disponibilidade de ingressos...\n ********\n {$this->ingressos} ingressos disponíveis.\n ********\n";
       if($this->ingressos >= $ingressosVendidos){
         $this->ingressos -= $ingressosVendidos;
-        echo " Venda realizada com sucesso!\n ********\n";
+        echo " Venda realizada com sucesso.\n ********\n";
         return 1;
       } else {
-        echo " Não há ingressos disponíveis!\n ********\n";
+        echo " Não há ingressos suficientes.\n ********\n";
         return 0;
       }
     }
@@ -66,14 +66,16 @@
     }
     public function comprarIngressos($qt_ingressos){
       $filme = $this->getFilme();
+      echo " Você solicitou {$qt_ingressos} ingressos.\n";
       $venda = $filme->venderIngressos($qt_ingressos);
       if ($venda) {
         $this->ingressos += $qt_ingressos;
+        echo " Você comprou {$qt_ingressos} ingressos.\n ********\n";
       }
     }
   }
 
   $filme1 = new Filme("Acolhida", "Sala 1", 100);
   $cliente1 = new Cliente("123.456.789-00", $filme1);
-  $cliente1->comprarIngressos(5);
+  $cliente1->comprarIngressos(800);
 ?>
